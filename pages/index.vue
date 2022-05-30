@@ -12,7 +12,7 @@
         </cat-img>
       </grid-list>
       <show-hidden-transition>
-        <loader v-if="isLoading"> loading start</loader>
+        <loader class="loader" v-if="isLoading"> loading start</loader>
       </show-hidden-transition>
     </content-column>
     </div>
@@ -64,5 +64,8 @@ const isFavorite = (item:CatImage) => favorites.value.includes(item)
 }
 .catImage:hover .favorite-cat-key{
   opacity: 1;
+}
+.loader{
+  align-self: center
 }
 </style>
