@@ -15,6 +15,6 @@ div {
   grid-auto-flow: row;
   max-width: 100%;
   gap: 50px;
-  
+  justify-content: space-between;
 }
 </style>

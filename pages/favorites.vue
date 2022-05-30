@@ -1,4 +1,5 @@
 <template>
+  <div>
     <nav-list/>
     <content-column class="column" v-scroll-after="onScrollOverGrid">
       <grid-list class="grid-list_cats">
@@ -8,9 +9,13 @@
         <loader v-if="isLoading"> loading start</loader>
       </show-hidden-transition>
     </content-column>
+  </div>
 </template>
 <script lang="ts" setup>
 import {vScrollAfter} from '@/dirictives/scroll-after'
+useHead({
+  title: 'Favorite cats'
+})
 const {data} = await useCatsList()
 const page = ref(0);
 const isLoading = ref(false);

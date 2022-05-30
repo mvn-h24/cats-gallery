@@ -1,4 +1,7 @@
 <template>
+  <Head>
+    <Meta rel="icon" href="favicon.svg"/>
+  </Head>
   <NuxtPage/>
 </template>
 <style>

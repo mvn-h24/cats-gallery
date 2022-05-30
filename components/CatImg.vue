@@ -23,12 +23,13 @@ export default defineComponent({
 div{
   width: 100%;
   height: 100%;
+  min-width: 225px;
   position: relative;
   overflow: hidden;
   display: flex;
   justify-content: center;
   align-items: center;
-  transition: .5s ease-in-out;
+  transition: .2s ease-in-out;
 }
 div:hover{
   transform: scale(1.2);
