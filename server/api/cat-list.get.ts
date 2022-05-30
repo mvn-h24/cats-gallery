@@ -4,11 +4,11 @@ import {CatListResponse} from "~/types/cats-app/cat-list.reponse";
 
 export default defineEventHandler(async (event) => {
     const query = useQuery(event)
-    const limit = query.limit ?? 30;
-    const page = query.page ?? 1;
+    const limit = Number(query.limit ?? 30);
+    const page = Number(query.page ?? 1);
     const order = query.oreder ?? 'Desc';
     const baseurl = process.env.CATS_API_URL;
-    const apiUrl = `${baseurl}/images/search?limit=${limit}&page=${page}&order=${order}`
+    const apiUrl = `${baseurl}/images/search?limit=${limit*page}&order=${order}`
     const apiKey = process.env.CATS_API_KEY;
     try {
         return axios.get<CatListResponse, AxiosResponse<CatListResponse>>(apiUrl, {

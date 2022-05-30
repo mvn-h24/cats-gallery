@@ -6,7 +6,7 @@ const heartUrl = `url("${heart}")`;
 const heartOutlineUrl = `url("${heartOutline}")`;
 const props = withDefaults(
   defineProps<{
-  active:boolean
+  active?:boolean
 }>(),
 {
   active: false

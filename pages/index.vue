@@ -19,8 +19,8 @@ useHead({
   title: 'Cats list'
 })
 
-const {data} = await useCatsList()
-const page = ref(0);
+const page = ref(1);
+const {data} = await useCatsList(page.value)
 const isLoading = ref(false);
 const onScrollOverGrid = (event) => {
   if(!isLoading.value){
@@ -28,6 +28,14 @@ const onScrollOverGrid = (event) => {
     isLoading.value = true;
   }
 }
+watch(data, (d)=> {
+  isLoading.value = false;
+})
+watch(page,(d)=> {
+  setTimeout(async () => {
+    data.value = (await useCatsList(page.value)).data.value
+  }, 2000)
+})
 </script>
 
 <style scoped>
