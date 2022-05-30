@@ -4,7 +4,11 @@
     <content-column class="column" v-scroll-after="onScrollOverGrid">
       <grid-list class="grid-list_cats">
         <cat-img v-for="catImg in data" :key="catImg.id" :src="catImg" class="catImage">
-          <favorite-btn class="favorite-cat-key"/>
+          <favorite-btn
+            :active="isFavorite(catImg)"
+            :class="{['favorite-cat-key']:!isFavorite(catImg)}"
+            @click="toggleFavorite(catImg)"
+          />
         </cat-img>
       </grid-list>
       <show-hidden-transition>
@@ -14,7 +18,9 @@
     </div>
 </template>
 <script lang="ts" setup>
-import {vScrollAfter} from '@/dirictives/scroll-after'
+import {vScrollAfter} from '~~/dirictives/scroll-after'
+import { useFavorites } from '~~/composables/useFavorites';
+import { CatImage } from '~~/types/cats-app';
 useHead({
   title: 'Cats list'
 })
@@ -36,6 +42,16 @@ watch(page,(d)=> {
     data.value = (await useCatsList(page.value)).data.value
   }, 2000)
 })
+
+const favorites = useFavorites()
+const toggleFavorite = (item:CatImage)=>{
+  if(isFavorite(item)){
+    favorites.value = favorites.value.filter(({id})=> id !== item.id);
+  }else{
+    favorites.value.push(item);
+  }
+}
+const isFavorite = (item:CatImage) => favorites.value.includes(item)
 </script>
 
 <style scoped>
