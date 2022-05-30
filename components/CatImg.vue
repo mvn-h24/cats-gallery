@@ -8,19 +8,24 @@ export default defineComponent({
       type: Object as PropType<CatImage>,
       required: false
     }
+  },
+  computed: {
+    altText() {
+      return `cats image on url ${this.src.url}`
+    }
   }
 })
 </script>
 
 <template>
   <div>
-    <img :src="src.url" alt="cats image {{src.id}}"/>
+    <img :alt="altText" :src="src.url"/>
     <slot/>
   </div>
 </template>
 
 <style scoped>
-div{
+div {
   width: 100%;
   height: 100%;
   min-width: 225px;
@@ -31,11 +36,13 @@ div{
   align-items: center;
   transition: .2s ease-in-out;
 }
-div:hover{
+
+div:hover {
   transform: scale(1.2);
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
 }
-img{
+
+img {
   position: absolute;
   object-fit: cover;
   min-height: 100%;
