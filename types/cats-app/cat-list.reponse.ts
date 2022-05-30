@@ -1,3 +1,3 @@
-import {CatImage} from "~/types/cat-image";
+import {CatImage} from "~/types/cats-app/cat-image";
 
-export type CatListReponse = Array<CatImage>
+export type CatListResponse = Array<CatImage>
